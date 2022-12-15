@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>C85</title>
+
+<link rel="stylesheet" type="text/css" href="style.css">
+
+<script src="fabric.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+<body>
+
+	<center>
+
+	<h1 id="titulo">JOGO DE FUTEBOL</h1>
+
+
+	
+			<div id="canvas">
+
+				<canvas id="tela" width="600" height="600"></canvas>
+
+			</div>
+
+		</center>
+
+	<script>
+		var tela = new fabric.Canvas("tela");
+		var ctx = tela.getContext("2d");
+
+		var x = 510;
+		var y = 510;
+		var jogador = '';
+		
+		function mover(){
+			tela.remove(jogador);
+			fabric.Image.fromURL("jogador.png", function(img){
+				jogador = img;
+				jogador.scaleToWidth(140);
+				jogador.scaleToHeight(140);
+				jogador.set({
+					top:y,
+					left:x
+				})
+				tela.add(jogador);
+				
+			})
+		}
+		
+		//detecta se a tecla foi pressionada
+		window.addEventListener("keydown", aperteitecla);
+
+		function aperteitecla(e){
+			var tecla = e.keyCode;
+			console.log("apertei a tecla que tem código: "+tecla)
+			if(tecla == 65){
+				x-=10;
+				mover();
+			}
+			if(tecla == 68){
+				x+=10;
+				mover();
+			}
+			if(tecla == 87){
+				y-=10;
+				mover();
+			}
+			if(tecla == 83){
+				y+=10;
+				mover();
+			}
+		}
+	</script>
+</body>
+</html>
